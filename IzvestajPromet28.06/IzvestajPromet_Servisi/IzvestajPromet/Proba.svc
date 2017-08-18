@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="VB" Debug="true" Service="BlokDokument.Proba" CodeBehind="Proba.svc.vb" %>

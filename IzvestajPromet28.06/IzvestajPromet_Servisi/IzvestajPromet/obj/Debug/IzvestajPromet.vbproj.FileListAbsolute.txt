@@ -1,0 +1,46 @@
+c:\users\w7\documents\visual studio 2013\Projects\IzvestajPromet\IzvestajPromet\obj\Debug\IzvestajPromet.Resources.resources
+c:\users\w7\documents\visual studio 2013\Projects\IzvestajPromet\IzvestajPromet\obj\Debug\IzvestajPromet.vbproj.GenerateResource.Cache
+c:\users\w7\documents\visual studio 2013\Projects\IzvestajPromet\IzvestajPromet\bin\IzvestajPromet.dll.config
+c:\users\w7\documents\visual studio 2013\Projects\IzvestajPromet\IzvestajPromet\bin\IzvestajPromet.dll
+c:\users\w7\documents\visual studio 2013\Projects\IzvestajPromet\IzvestajPromet\bin\IzvestajPromet.pdb
+c:\users\w7\documents\visual studio 2013\Projects\IzvestajPromet\IzvestajPromet\bin\IzvestajPromet.xml
+c:\users\w7\documents\visual studio 2013\Projects\IzvestajPromet\IzvestajPromet\obj\Debug\IzvestajPromet.dll
+c:\users\w7\documents\visual studio 2013\Projects\IzvestajPromet\IzvestajPromet\obj\Debug\IzvestajPromet.xml
+c:\users\w7\documents\visual studio 2013\Projects\IzvestajPromet\IzvestajPromet\obj\Debug\IzvestajPromet.pdb
+C:\Users\Win8\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\IzvestajPromet.dll.config
+C:\Users\Win8\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\IzvestajPromet.dll
+C:\Users\Win8\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\IzvestajPromet.pdb
+C:\Users\Win8\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\IzvestajPromet.xml
+C:\Users\Win8\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\IzvestajPromet.vbprojResolveAssemblyReference.cache
+C:\Users\Win8\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\IzvestajPromet.Resources.resources
+C:\Users\Win8\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\IzvestajPromet.vbproj.GenerateResource.Cache
+C:\Users\Win8\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\IzvestajPromet.dll
+C:\Users\Win8\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\IzvestajPromet.xml
+C:\Users\Win8\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\IzvestajPromet.pdb
+C:\Users\Win 7\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.dll.config
+C:\Users\Win 7\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.dll
+C:\Users\Win 7\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.pdb
+C:\Users\Win 7\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.xml
+C:\Users\Win 7\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.Resources.resources
+C:\Users\Win 7\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\IzvestajPromet.vbproj.GenerateResource.Cache
+C:\Users\Win 7\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.dll
+C:\Users\Win 7\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.xml
+C:\Users\Win 7\Desktop\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.pdb
+C:\Users\Win 7\AndroidStudioProjects\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.dll.config
+C:\Users\Win 7\AndroidStudioProjects\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.dll
+C:\Users\Win 7\AndroidStudioProjects\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.pdb
+C:\Users\Win 7\AndroidStudioProjects\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.xml
+C:\Users\Win 7\AndroidStudioProjects\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.Resources.resources
+C:\Users\Win 7\AndroidStudioProjects\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\IzvestajPromet.vbproj.GenerateResource.Cache
+C:\Users\Win 7\AndroidStudioProjects\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.dll
+C:\Users\Win 7\AndroidStudioProjects\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.xml
+C:\Users\Win 7\AndroidStudioProjects\IzvestajPromet\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.pdb
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.dll.config
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.dll
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.pdb
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.xml
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.Resources.resources
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\IzvestajPromet.vbproj.GenerateResource.Cache
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.dll
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.xml
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\obj\Debug\BlokDokument.pdb

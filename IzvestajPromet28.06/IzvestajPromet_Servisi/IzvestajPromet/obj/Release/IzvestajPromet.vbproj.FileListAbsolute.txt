@@ -1,0 +1,9 @@
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.dll.config
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.dll
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.pdb
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\bin\BlokDokument.xml
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\obj\Release\BlokDokument.Resources.resources
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\obj\Release\IzvestajPromet.vbproj.GenerateResource.Cache
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\obj\Release\BlokDokument.dll
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\obj\Release\BlokDokument.xml
+C:\Users\User\Documents\Praksa Proekti\IzvestajPromet28.06\IzvestajPromet_Servisi\IzvestajPromet\obj\Release\BlokDokument.pdb
