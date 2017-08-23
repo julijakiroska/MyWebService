@@ -98,6 +98,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BazaRestLog.vb" />
     <Compile Include="INotes.vb" />
     <Compile Include="IProba.vb" />
     <Compile Include="klasi.vb" />
@@ -127,6 +128,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="UnvFunkcii.vb" />
+    <Compile Include="VarIB.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

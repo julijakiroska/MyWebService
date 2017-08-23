@@ -295,4 +295,18 @@ Public Class Konv
         End Try
     End Function
 
+    Public Shared Function ObjVoBoolean(ByVal Sto As Object) As Boolean
+        Dim Rez As Boolean
+        If Sto Is DBNull.Value Then
+            Return False
+        Else
+            Try
+                Rez = Convert.ToBoolean(Sto)
+                Return Rez
+            Catch
+                Return False
+            End Try
+        End If
+    End Function
+
 End Class

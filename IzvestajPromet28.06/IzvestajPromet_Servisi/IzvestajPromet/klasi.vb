@@ -186,8 +186,12 @@
     Public Class Podatok
         Public greska As String
 
+        <DataMember(Name:="SifraZab")>
+        Public SifraZab As Integer
+
         Sub New()
             greska = ""
+            SifraZab = 0
         End Sub
 
     End Class
@@ -243,6 +247,22 @@
         End Sub
 
 
+    End Class
+
+    <DataContract()>
+    Public Class Slika
+
+        <DataMember(Name:="SlikaStr")>
+        Public SlikaStr As String
+
+        <DataMember(Name:="Ime")>
+        Public Ime As String
+
+        <DataMember(Name:="Pateka_Slika")>
+        Public Pateka_Slika As String
+
+        <DataMember(Name:="Sifra_Zab")>
+        Public Sifra_Zab As Integer
     End Class
 
 End Class

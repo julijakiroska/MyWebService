@@ -1,5 +1,10 @@
 ﻿Imports System.Data.SqlClient
 Imports BlokDokument.klasi
+Imports System.IO
+Imports System.Drawing
+Imports System.Web.Script.Serialization
+Imports System.Drawing.Imaging
+
 
 Public Class Notes
     Implements INotes
@@ -10,6 +15,7 @@ Public Class Notes
     Public Sub New()
     End Sub
 
+    Public Log As BazaRestLog
 
     Public Function ProverkaOperatorMob(ByVal operatoriMob As klasi.OperatoriMob) As klasi.DaliPostoiKorisnik Implements INotes.ProverkaOperatorMob
 
@@ -189,6 +195,7 @@ Public Class Notes
                 vneseno.greska = "Not updated"
             Else
                 vneseno.greska = "Updated"
+                vneseno.SifraZab = Sifra_Zab
             End If
 
         Catch ex As Exception
@@ -200,6 +207,223 @@ Public Class Notes
 
         Return vneseno
 
+    End Function
+
+    'Public Function UploadImage(ByVal slikaBase64 As String, ByVal Sifra_Zab As Integer) As String Implements INotes.UploadImage
+
+
+    '    Dim imageBytes As Byte() = Convert.FromBase64String(slikaBase64)
+    '    Dim img As Image = Nothing
+    '    Dim imgName As String
+
+    '    Try
+
+    '        Using ms1 As New MemoryStream(imageBytes)
+    '            img = Image.FromStream(ms1)
+    '            imgName = 
+    '        End Using
+
+    '        img.Save(imgName)
+    '    Catch ex As Exception
+
+    '        Return (ex.ToString())
+    '    End Try
+
+    '    Return ""
+
+    'End Function
+
+    Public Function ZacuvajSlika(ByVal ObjSlika As klasi.Slika) As Boolean Implements INotes.ZacuvajSlika
+
+        Dim selCmd As New System.Data.SqlClient.SqlCommand
+        Dim conn As SqlConnection
+
+        otvoriKonekcija(conn)
+        Dim sqlTrans As System.Data.SqlClient.SqlTransaction
+        sqlTrans = conn.BeginTransaction
+        Dim PatekaZacuvaj As String = VarIB.ZemiWRKonfig("PatekaDoSliki")
+
+        ' Dim Greska As String
+        Dim uspeh As Boolean = False
+        Dim BA As String = ""
+        If ObjSlika.SlikaStr <> "" Then
+            Dim dataTmp As Byte() = Convert.FromBase64String(ObjSlika.SlikaStr)
+            Dim pomosenSlika As Stream = New MemoryStream(dataTmp)
+
+            uspeh = ZacuvajSlikaNaServer(pomosenSlika, ObjSlika.Ime)
+
+            Dim serializer As New JavaScriptSerializer()
+            Dim serInputObject As String = serializer.Serialize(ObjSlika)
+
+            UnvFunkcii.zapisiInfoVoFileLog("ZacuvajSlika-Primen Objekt= " + serInputObject)
+
+            If uspeh Then
+                Try
+                    With selCmd
+
+                        .CommandType = CommandType.StoredProcedure
+                        .CommandText = "ZacuvajSlika"
+                        .Connection = conn
+                        .Transaction = sqlTrans
+                        .Parameters.Clear()
+                        .Parameters.Add(New SqlClient.SqlParameter("@Sifra_Zab", ObjSlika.Sifra_Zab))
+                        .Parameters.Add(New SqlClient.SqlParameter("@Pateka_Slika", PatekaZacuvaj + ObjSlika.Ime))
+                        .Parameters.Add(New SqlClient.SqlParameter("@Ime", ObjSlika.Ime))
+                        .ExecuteNonQuery()
+                        sqlTrans.Commit()
+                    End With
+                Catch ex As Exception
+                    uspeh = False
+                    sqlTrans.Rollback()
+
+                    Dim serializedResult As String = serializer.Serialize(ObjSlika)
+                    UnvFunkcii.zapisiGreskaVoFileLog("ZacuvajSlika-" + ex.Message)
+                    Log.ZapisGreska("ZacuvajSlika -- " + serializedResult, "mc_ZapisMerc_Slika_Stav", ex.ToString)
+                End Try
+            Else
+                UnvFunkcii.zapisiGreskaVoFileLog("ZacuvajSlika -- NE e zacuvana slika na server(na disk)")
+                uspeh = False
+                sqlTrans.Rollback()
+                Log.ZapisGreska("ZacuvajSlikaNaDisk -- " + ObjSlika.Ime, "", "")
+
+            End If
+
+        End If
+        Return uspeh
+    End Function
+
+    Public Function ZacuvajSlikaNaServer(ByVal SlikaStream As Stream, ByVal ImeFajl As String) As Boolean
+
+        ' Dim Greska As String
+        Dim uspeh As Boolean = False
+        Try
+
+
+            Dim PatekaZacuvaj As String = VarIB.ZemiWRKonfig("PatekaDoSliki")
+            'Dim PatekaZacuvaj As String = "C:\ib\RestKonfig\"
+            ' PatekaDoSliki" value="C:\ib\SlikiZabeleski\
+
+            If Not IO.Directory.Exists(PatekaZacuvaj) Then
+                IO.Directory.CreateDirectory(PatekaZacuvaj)
+            End If
+
+            Dim pateka As String = PatekaZacuvaj
+            Dim FilePath As String = pateka + ImeFajl
+
+            Dim myOutputStream As IO.Stream = System.IO.File.OpenWrite(FilePath)
+
+            Try
+                Dim length As Integer = 0
+
+
+                Dim myBufferSize As Integer = 1024
+                Dim buffer(myBufferSize) As Byte
+                ReDim buffer(myBufferSize)
+                Dim numbytes As Integer
+                Dim raboti As Boolean = True
+
+                While raboti
+                    numbytes = SlikaStream.Read(buffer, 0, buffer.Length)
+                    If numbytes > 0 Then
+                        myOutputStream.Write(buffer, 0, buffer.Length)
+                        raboti = True
+                    Else
+                        raboti = False
+                    End If
+                End While
+
+                myOutputStream.Close()
+            Catch ex As Exception
+                uspeh = False
+                Log.ZapisGreska("ZacuvajSlikaNaServer -- ", "zapis slika file", ex.ToString)
+                UnvFunkcii.zapisiGreskaVoFileLog("ZacuvajSlikaNaServer-zapis slika file " + ex.ToString)
+            End Try
+
+            uspeh = True
+            UnvFunkcii.zapisiInfoVoFileLog("ZacuvajSlikaNaServer-Uspesno zacuvana slika, PATEKA_SLIKA=" + FilePath)
+        Catch ex As Exception
+            uspeh = False
+            Log.ZapisGreska("ZacuvajSlikaNaServer -- ", "zapis slika folder", ex.ToString)
+            UnvFunkcii.zapisiGreskaVoFileLog("ZacuvajSlikaNaServer-zapis slika file " + ex.ToString)
+        End Try
+        Return uspeh
+    End Function
+
+    Public Function ZemiSlikiZaPoseta(ByVal Sifra_Zab As Integer) As klasi.Slika
+        Dim PatekaZacuvaj As String = VarIB.ZemiWRKonfig("PatekaDoSliki")
+
+        Dim slikiZaPoseta As klasi.Slika = BGETZemiSlikiZaPoseta(Sifra_Zab)
+
+        'For Each slikaStav As klasi.Slika In slikiZaPoseta
+        zemiSlikaZaStav(slikiZaPoseta)
+        'Next
+
+        Return slikiZaPoseta
+    End Function
+
+    Private Sub zemiSlikaZaStav(ByRef slika As klasi.Slika)
+
+        Dim image1 As Image
+        image1 = Bitmap.FromFile(slika.Pateka_Slika)
+        slika.SlikaStr = ImageToBase64(image1, ImageFormat.Jpeg)
+
+    End Sub
+
+    Public Function BGETZemiSlikiZaPoseta(ByVal Sifra_Zab As Integer) As klasi.Slika Implements INotes.BGETZemiSlikiZaPoseta
+        Dim conn As SqlConnection
+        otvoriKonekcija(conn)
+        Dim mojCmd As New SqlCommand
+        Dim citac As SqlDataReader
+        Dim Slika As New klasi.Slika
+
+       
+        'Dim odgovor As New List(Of klasi.Slika)()
+        'Dim selCmd As New System.Data.SqlClient.SqlCommand
+        'Dim sqlRead As System.Data.SqlClient.SqlDataReader
+        'Dim index As Integer
+
+        Try
+            With mojCmd
+                .Connection = conn
+                .CommandType = CommandType.StoredProcedure
+                .CommandText = "ZemiSliki"
+                .Parameters.Clear()
+                .Parameters.Add(New SqlClient.SqlParameter("@Sifra_Zab", Sifra_Zab))
+                citac = .ExecuteReader()
+            End With
+
+            While citac.Read
+                With citac
+                    Dim PatekaZacuvaj As String = VarIB.ZemiWRKonfig("PatekaDoSliki")
+                    'Dim slikiZaPoseta As klasi.Slika = zemiSlikaZaStav(Sifra_Zab)
+                    Slika.Ime = citac("Ime").ToString()
+                    Slika.Pateka_Slika = citac("Pateka_Slika").ToString()
+                    Slika.Sifra_Zab = Sifra_Zab
+                    zemiSlikaZaStav(Slika)
+                    '' odgovor.Add(Slika)
+                End With
+            End While
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+
+        Finally
+            conn.Close()
+        End Try
+
+        Return Slika
+
+    End Function
+
+    Private Function ImageToBase64(ByVal image As Image, ByVal format As System.Drawing.Imaging.ImageFormat) As String
+        Using ms As New MemoryStream
+            image.Save(ms, format)
+            Dim imageBytes As Byte() = ms.ToArray()
+
+            Dim base64String As String = Convert.ToBase64String(imageBytes)
+
+            Return base64String
+        End Using
     End Function
 
 End Class
