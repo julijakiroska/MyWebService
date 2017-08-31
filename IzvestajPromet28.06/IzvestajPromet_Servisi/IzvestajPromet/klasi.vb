@@ -152,7 +152,6 @@
         <DataMember(Name:="listaNacin")>
         Public listaNacin As List(Of klasi.iNacin)
 
-
     End Class
 
     Public Class ProverkaNaDokument
@@ -184,6 +183,7 @@
     End Class
     
     Public Class Podatok
+
         Public greska As String
 
         <DataMember(Name:="SifraZab")>
@@ -263,6 +263,7 @@
 
         <DataMember(Name:="Sifra_Zab")>
         Public Sifra_Zab As Integer
+
     End Class
 
 End Class

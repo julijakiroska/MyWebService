@@ -19,7 +19,6 @@ Public Class Notes
 
     Public Function ProverkaOperatorMob(ByVal operatoriMob As klasi.OperatoriMob) As klasi.DaliPostoiKorisnik Implements INotes.ProverkaOperatorMob
 
-
         Dim conn As SqlConnection
         otvoriKonekcija(conn)
         Dim mojCmd As New SqlCommand
@@ -38,7 +37,6 @@ Public Class Notes
                 .Parameters.Add(New SqlClient.SqlParameter("@Login_Ime", operatoriMob.Login_Ime))
                 .Parameters.Add(New SqlClient.SqlParameter("@Lozinka", operatoriMob.Lozinka))
                 citac = .ExecuteReader()
-
 
             End With
 
@@ -62,9 +60,7 @@ Public Class Notes
         End Try
 
 
-
         Return daliPostoiKorisnik
-
 
     End Function
 
@@ -163,6 +159,7 @@ Public Class Notes
         End Try
 
         Return Poraka
+
     End Function
 
     Public Function VnesiZabeleski(ByVal Zabeleska As String, ByVal Sifra_Oper As Integer, ByVal Sifra_Zab As Integer) As klasi.Podatok Implements INotes.VnesiZabeleski
@@ -209,44 +206,18 @@ Public Class Notes
 
     End Function
 
-    'Public Function UploadImage(ByVal slikaBase64 As String, ByVal Sifra_Zab As Integer) As String Implements INotes.UploadImage
-
-
-    '    Dim imageBytes As Byte() = Convert.FromBase64String(slikaBase64)
-    '    Dim img As Image = Nothing
-    '    Dim imgName As String
-
-    '    Try
-
-    '        Using ms1 As New MemoryStream(imageBytes)
-    '            img = Image.FromStream(ms1)
-    '            imgName = 
-    '        End Using
-
-    '        img.Save(imgName)
-    '    Catch ex As Exception
-
-    '        Return (ex.ToString())
-    '    End Try
-
-    '    Return ""
-
-    'End Function
-
     Public Function ZacuvajSlika(ByVal ObjSlika As klasi.Slika) As Boolean Implements INotes.ZacuvajSlika
 
         Dim selCmd As New System.Data.SqlClient.SqlCommand
         Dim conn As SqlConnection
-
         otvoriKonekcija(conn)
         Dim sqlTrans As System.Data.SqlClient.SqlTransaction
         sqlTrans = conn.BeginTransaction
         Dim PatekaZacuvaj As String = VarIB.ZemiWRKonfig("PatekaDoSliki")
-
-        ' Dim Greska As String
         Dim uspeh As Boolean = False
-        Dim BA As String = ""
+
         If ObjSlika.SlikaStr <> "" Then
+
             Dim dataTmp As Byte() = Convert.FromBase64String(ObjSlika.SlikaStr)
             Dim pomosenSlika As Stream = New MemoryStream(dataTmp)
 
@@ -294,7 +265,6 @@ Public Class Notes
 
     Public Function ZacuvajSlikaNaServer(ByVal SlikaStream As Stream, ByVal ImeFajl As String) As Boolean
 
-        ' Dim Greska As String
         Dim uspeh As Boolean = False
         Try
 
@@ -351,14 +321,12 @@ Public Class Notes
 
     Public Function ZemiSlikiZaPoseta(ByVal Sifra_Zab As Integer) As klasi.Slika
         Dim PatekaZacuvaj As String = VarIB.ZemiWRKonfig("PatekaDoSliki")
-
         Dim slikiZaPoseta As klasi.Slika = BGETZemiSlikiZaPoseta(Sifra_Zab)
 
-        'For Each slikaStav As klasi.Slika In slikiZaPoseta
         zemiSlikaZaStav(slikiZaPoseta)
-        'Next
 
         Return slikiZaPoseta
+
     End Function
 
     Private Sub zemiSlikaZaStav(ByRef slika As klasi.Slika)
@@ -376,12 +344,6 @@ Public Class Notes
         Dim citac As SqlDataReader
         Dim Slika As New klasi.Slika
 
-       
-        'Dim odgovor As New List(Of klasi.Slika)()
-        'Dim selCmd As New System.Data.SqlClient.SqlCommand
-        'Dim sqlRead As System.Data.SqlClient.SqlDataReader
-        'Dim index As Integer
-
         Try
             With mojCmd
                 .Connection = conn
@@ -395,12 +357,10 @@ Public Class Notes
             While citac.Read
                 With citac
                     Dim PatekaZacuvaj As String = VarIB.ZemiWRKonfig("PatekaDoSliki")
-                    'Dim slikiZaPoseta As klasi.Slika = zemiSlikaZaStav(Sifra_Zab)
                     Slika.Ime = citac("Ime").ToString()
                     Slika.Pateka_Slika = citac("Pateka_Slika").ToString()
                     Slika.Sifra_Zab = Sifra_Zab
                     zemiSlikaZaStav(Slika)
-                    '' odgovor.Add(Slika)
                 End With
             End While
 
